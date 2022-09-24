@@ -1,4 +1,5 @@
 /*creating database and tables*/
+
 DROP DATABASE IF EXISTS myEmployees_db;
 CREATE DATABASE myEmployees_db;
 
