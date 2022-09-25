@@ -1,7 +1,9 @@
+//inputted dependencies
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
-// const consoleTable = require("console.table");
+const consoleTable = require("console.table");
 
+//created connection
 const db = mysql.createConnection(
   {
     host: "localhost",
@@ -41,7 +43,7 @@ mainMenuPrompt = () => {
       },
     ])
     .then((response) => {
-      let userChoice = response.choice;
+      let userChoice = response.mainmenu;
       console.log(userChoice);
       switch (userChoice) {
         case "View All Employees":
@@ -77,8 +79,8 @@ mainMenuPrompt = () => {
 
 function viewAllEmployees() {
   db.query("SELECT * FROM employee;", (err, res) => {
-    // if (err) throw err;
-    console.log(res);
+    if (err) throw err;
+    console.table(res);
     mainMenuPrompt();
   });
 }
@@ -86,31 +88,37 @@ function viewAllEmployees() {
 function viewRoles() {
   db.query("SELECT * FROM role;", (err, res) => {
     if (err) throw err;
-    console.log(res);
+    console.table(res);
     mainMenuPrompt();
   });
 }
+
 function viewAllDepartments() {
   db.query("SELECT * FROM department;", (err, res) => {
     if (err) throw err;
-    console.log(res);
+    console.table(res);
     mainMenuPrompt();
   });
 }
 
-function addEmployee() {
-    inquirer.prompt([
-{
- type:
- name:
- message: 
+// function addDepartment() {
+//     inquirer.prompt([
+// {
+//  type: "input",
+//  name: "departmentName",
+//  message: "What is the name of the department that you want to add?",
+// },
+// ])
+// .then((response)=> {
+// let addDepInput = response.departmentName;
+// console.log(addDepInput);
+// db.query(`INSERT INTO department (department_name) VALUES ("${response.departmentName}");` (err,res) => {
+//     if (err) throw err;
+//     console.log(res);
+// }
 
-}
-
-
-    ])
-}
-
+// })
+// }
 
 //initialises app
 mainMenuPrompt();
