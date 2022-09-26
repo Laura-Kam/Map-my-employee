@@ -19,7 +19,6 @@ const db = mysql.createConnection(
 db.connect((err) => {
   if (err) throw err;
   console.log("database connected");
-  mainMenuPrompt();
 });
 
 //main menu prompts
@@ -71,6 +70,7 @@ mainMenuPrompt = () => {
           break;
 
         case "Add Department":
+          console.log("==adding a department");
           addDepartment();
           break;
       }
@@ -78,12 +78,70 @@ mainMenuPrompt = () => {
 };
 
 function viewAllEmployees() {
-  db.query("SELECT * FROM employee;", (err, res) => {
-    if (err) throw err;
-    console.table(res);
-    mainMenuPrompt();
-  });
+  db.query(
+    `SELECT
+  employee.id,
+  employee.first_name,
+  employee.last_name,
+  role.title AS job_title,
+  department.department_name AS department_name,
+  role.salary,
+  CONCAT(manager.first_name, ' ', manager.last_name) AS manager_name FROM employee
+  LEFT JOIN role ON employee.role_id = role.id
+  LEFT JOIN department ON role.department_id = department.id
+  LEFT JOIN employee manager ON manager.id = employee.manager_id;`,
+    (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      mainMenuPrompt();
+    }
+  );
 }
+
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "first_name",
+        message: "What is the name of the employee that you want to add?",
+      },
+      {
+        type: "input",
+        name: "last_name",
+        message: "What is the last name of the employee that you want to add?",
+      },
+      {
+        type: "input",
+        name: "role_id",
+        message: "What is the role id of the employee that you want to add?",
+      },
+      {
+        type: "input",
+        name: "manager_id",
+        message: "What is the manager id of the employee you want to add?",
+      },
+    ])
+    .then((response) => {
+      db.query(`INSERT INTO employee SET ?`, response),
+        (err, res) => {
+          if (err) throw err;
+          console.log(res);
+        };
+      mainMenuPrompt();
+    });
+}
+
+// //needs correcting.
+// function updateEmployeeRole(){
+//   inquirer.prompt([
+//     {
+//       type: "input",
+//       name: "first_name",
+//       message: "What is the name of the employee that you want to add?",
+//     },
+
+// }
 
 function viewRoles() {
   db.query("SELECT * FROM role;", (err, res) => {
@@ -91,6 +149,35 @@ function viewRoles() {
     console.table(res);
     mainMenuPrompt();
   });
+}
+
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the title of the role you want to add?",
+      },
+      {
+        type: "number",
+        name: "salary",
+        message: "What is the salary of the role you want to add?",
+      },
+      {
+        type: "number",
+        name: "department_id",
+        message: "What is the department id of the role you want to add?",
+      },
+    ])
+    .then((response) => {
+      db.query(`INSERT INTO role SET ?`, response),
+        (err, res) => {
+          if (err) throw err;
+          console.log(res);
+        };
+      mainMenuPrompt();
+    });
 }
 
 function viewAllDepartments() {
@@ -101,24 +188,23 @@ function viewAllDepartments() {
   });
 }
 
-// function addDepartment() {
-//     inquirer.prompt([
-// {
-//  type: "input",
-//  name: "departmentName",
-//  message: "What is the name of the department that you want to add?",
-// },
-// ])
-// .then((response)=> {
-// let addDepInput = response.departmentName;
-// console.log(addDepInput);
-// db.query(`INSERT INTO department (department_name) VALUES ("${response.departmentName}");` (err,res) => {
-//     if (err) throw err;
-//     console.log(res);
-// }
-
-// })
-// }
-
+function addDepartment() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "department_name",
+        message: "What is the name of the department that you want to add?",
+      },
+    ])
+    .then((response) => {
+      db.query(`INSERT INTO department SET ?`, response),
+        (err, res) => {
+          if (err) throw err;
+          console.log(res);
+        };
+      mainMenuPrompt();
+    });
+}
 //initialises app
 mainMenuPrompt();
