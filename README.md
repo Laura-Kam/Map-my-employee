@@ -1,4 +1,4 @@
-# Title of Project: Readme-quickly.
+# Title of Project: Map my Employee
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -51,15 +51,15 @@ MIT
 
 ## Command to install
 
-npm i
+npm i.
 
 ## Instructions for users of the app
 
-clone the application, install dependencies, run the app using node index.js,
+clone the application, install dependencies, Inquirer, MySQL2, console.table. Run the schema and then seeds.sql files. Then Run the app using node index.js,
 
 ## Features of the project
 
-It is a command-line application, it creates database tables, and allows for updating through command line input.
+It is a command-line application, it creates database tables, and allows for viewing and updating through command line inputs.
 
 ## Link to Git-hub repo.
 
@@ -71,9 +71,10 @@ It is a command-line application, it creates database tables, and allows for upd
 
 ## bugs
 
-- Tables were not syntatically correct.
-- Connection failed to work.
-- Prompt responses were incorrectly configured.
+- Tables were not syntatically correct. Resolved.
+- Connection failed to work. Resolved.
+- Prompt responses were incorrectly configured. Resolved.
+- Remaing bug- cannot update employee.
 
 ## Version history
 
@@ -84,9 +85,9 @@ It is a command-line application, it creates database tables, and allows for upd
 
 # Link to video
 
-- [Map-My Employees Video Google Drive](.....)
+- [Map-My Employees Video Google Drive](https://drive.google.com/file/d/1Fpu0EbOrI3jwCa3uXyCOjo_Ic2fAPWVb/view)
 
-- [Map-My Employees Screencastify](.........)
+- [Map-My Employees Screencastify](https://watch.screencastify.com/v/BGCke3UbKpUn7eX3APB7)
 
 ## How to contribute
 

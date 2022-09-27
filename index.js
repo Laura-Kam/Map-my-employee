@@ -104,7 +104,7 @@ function addEmployee() {
       {
         type: "input",
         name: "first_name",
-        message: "What is the name of the employee that you want to add?",
+        message: "What is the first name of the employee that you want to add?",
       },
       {
         type: "input",
@@ -132,14 +132,37 @@ function addEmployee() {
     });
 }
 
-// //needs correcting.
+//needs correcting.
 // function updateEmployeeRole(){
 //   inquirer.prompt([
 //     {
-//       type: "input",
-//       name: "first_name",
-//       message: "What is the name of the employee that you want to add?",
+//       type: "number",
+//       name: "id",
+//       message: "Which employee do you want to update? Write their id",
 //     },
+//     {
+//       type: "list",
+//       name: "title",
+//       message: "What new role would you like to assign them?",
+//       choices: [
+//         "History Teacher",
+//         "Language Assistant",
+//         "Head of Science",
+//         "Head of RE",
+//         "Head of History",
+//         "Science Teacher",
+//         "Head of Langs"
+//       ]
+//     },
+//     .then((response) => {
+//       db.query(`UPDATE role SET title = ? WHERE `, response.id),
+//         (err, res) => {
+//           if (err) throw err;
+//           console.log(res);
+//         };
+//         db.query()
+//       mainMenuPrompt();
+//     });
 
 // }
 
