@@ -55,7 +55,7 @@ npm i.
 
 ## Instructions for users of the app
 
-clone the application, install dependencies, Inquirer, MySQL2, console.table. Run the schema and then seeds.sql files. Then Run the app using node index.js,
+Clone the application, install dependencies, Inquirer, MySQL2, console.table. Run the schema and then seeds.sql files. Then Run the app using node index.js,
 
 ## Features of the project
 
@@ -85,9 +85,9 @@ It is a command-line application, it creates database tables, and allows for vie
 
 # Link to video
 
-- [Map-My Employees Video Google Drive](https://drive.google.com/file/d/1Fpu0EbOrI3jwCa3uXyCOjo_Ic2fAPWVb/view)
+- [Map-My Employee Video Google Drive](https://drive.google.com/file/d/1Fpu0EbOrI3jwCa3uXyCOjo_Ic2fAPWVb/view)
 
-- [Map-My Employees Screencastify](https://watch.screencastify.com/v/BGCke3UbKpUn7eX3APB7)
+- [Map-My Employee Screencastify](https://watch.screencastify.com/v/BGCke3UbKpUn7eX3APB7)
 
 ## How to contribute
 
