@@ -67,7 +67,7 @@ It is a command-line application, it creates database tables, and allows for vie
 
 ## Screenshot of application:
 
-[Screenshot of website](https://github.com/Laura-Kam/Map-my-employee/issues/2#issue-1385117481)
+[Screenshot of website](https://user-images.githubusercontent.com/104718053/192158795-9887de0c-01f3-42a6-8bda-9942d16a30fc.png)
 
 ## bugs
 
