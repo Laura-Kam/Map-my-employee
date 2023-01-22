@@ -54,7 +54,7 @@ mainMenuPrompt = () => {
           break;
 
         case "Update Employee Role":
-          updateRole();
+          updateEmployeeRole();
           break;
 
         case "View All Roles":
@@ -132,39 +132,31 @@ function addEmployee() {
     });
 }
 
-//needs correcting.
-// function updateEmployeeRole(){
-//   inquirer.prompt([
-//     {
-//       type: "number",
-//       name: "id",
-//       message: "Which employee do you want to update? Write their id",
-//     },
-//     {
-//       type: "list",
-//       name: "title",
-//       message: "What new role would you like to assign them?",
-//       choices: [
-//         "History Teacher",
-//         "Language Assistant",
-//         "Head of Science",
-//         "Head of RE",
-//         "Head of History",
-//         "Science Teacher",
-//         "Head of Langs"
-//       ]
-//     },
-//     .then((response) => {
-//       db.query(`UPDATE role SET title = ? WHERE `, response.id),
-//         (err, res) => {
-//           if (err) throw err;
-//           console.log(res);
-//         };
-//         db.query()
-//       mainMenuPrompt();
-//     });
-
-// }
+//update Employee Role
+function updateEmployeeRole() {
+  inquirer.prompt([
+    {
+      type: "number",
+      name: "id",
+      message: "Which employee do you want to update? Write their id",
+    },
+    {
+      type: "list",
+      name: "title",
+      message: "What new role would you like to assign them?",
+      choices: getTheRoles(),
+    },
+  ]);
+  // .then((response) => {
+  //   db.query(`UPDATE role SET title = ? WHERE `, response.id),
+  //     (err, res) => {
+  //       if (err) throw err;
+  //       console.log(res);
+  //     };
+  //   db.query();
+  //   mainMenuPrompt();
+  // });
+}
 
 function viewRoles() {
   db.query("SELECT * FROM role;", (err, res) => {
@@ -229,5 +221,18 @@ function addDepartment() {
       mainMenuPrompt();
     });
 }
+function getTheRoles() {
+  let data = db.query(`SELECT * FROM role`);
+  let roleChoices = [];
+  for (let i = 0; i < data[0].length; i++) {
+    let roleObj = {
+      name: data[0][i].title,
+      value: data[0][i].id,
+    };
+    roleChoices.push(roleObj);
+  }
+  return roleChoices;
+}
+
 //initialises app
 mainMenuPrompt();
